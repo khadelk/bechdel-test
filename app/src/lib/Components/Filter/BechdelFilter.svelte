@@ -1,7 +1,31 @@
 <script>
 	import { slide } from 'svelte/transition';
-	import {bechdelData} from '$lib/stores.js'
+	import { bechdelData, filteredData, bechdelClicked, movieData} from '$lib/stores.js'
 	let clicked = false;
+	let filterBechdelData = false;
+	const bechdelNums = [0,1,2,3]
+	let filteredBechdelData = []
+
+	const filterByBechdel = (e, num) => {
+		filterBechdelData = true;
+		filteredBechdelData = $bechdelData.filter(data => {
+			return data.rating == num;
+		})
+	}
+
+	$: {
+		if (filteredBechdelData.length > 0) { 
+			$filteredData = $movieData.filter(movie => {
+				filteredBechdelData.filter(data => {
+					return movie.title == data.title;
+				})
+			})
+		}
+	}
+	$: console.log(filteredData)
+
+
+
 </script>
 <div class="bechdel">
 <div class="button bechdel" on:click={() => clicked = !clicked}>
@@ -11,10 +35,9 @@
 
 {#if clicked}
 	<div transition:slide class="options">
-		<div>0</div>
-		<div>1</div>
-		<div>2</div>
-		<div>3</div>
+		{#each bechdelNums as num}
+			<div on:click={(e) => filterByBechdel(e, num)}>{num}</div>
+		{/each}
 	</div>
 {/if}
 </div>

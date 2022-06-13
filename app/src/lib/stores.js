@@ -19,5 +19,9 @@ bechdelData.subscribe(value => {
 	numMovies.subscribe(val => val['3'] = value.filter(movie => movie.rating == 3).length)
 })
 
+export const bechdelClicked = false;
+export const genreClicked = false;
+export const yearClicked = false;
+
 
 // filter(movie => movie.rating == 0).length

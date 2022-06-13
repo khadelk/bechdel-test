@@ -3,7 +3,7 @@
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 	export let searchTerm;
-
+	
 	function sendInput(event) {
 			dispatch('sendInput', event.target.value);
 	}
@@ -45,7 +45,7 @@ on:click={(event) => {
 						showSearch = false;
 					}}>
 					{#each $filteredData as movie}
-						<a class="search-results" type="button" href="{movie.imdb_id}">{movie.title}</a>
+						<a class="search-results" type="button" href="{movie.imdb_id.slice(2)}">{movie.title}</a>
 					{/each}
 				</div>
 			<!-- {:else} -->

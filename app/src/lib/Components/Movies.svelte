@@ -1,5 +1,5 @@
 <script>
-  import { bechdelData, displayMovies, filteredData, movieData } from '$lib/stores.js'
+  import { bechdelData, filteredData, movieData, bechdelClicked, genreClicked, yearClicked } from '$lib/stores.js'
 	import MovieCard from '$lib/Components/MovieCard.svelte'
 	import Search from '$lib/Components/Search.svelte'
 	import Filter from '$lib/Components/Filter/Filter.svelte'
@@ -46,7 +46,9 @@
 		if (searchTerm && searchTerm.length > 0) {
 			$filteredData;
 		} else {
-			$filteredData = (getRandom($movieData, 18))
+			if (!(bechdelClicked) || !(genreClicked) || !(yearClicked)) {
+				$filteredData = (getRandom($movieData, 18))
+			}
 		}
 	}
 </script>
