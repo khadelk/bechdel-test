@@ -1,9 +1,13 @@
 <script>
-  import { bechdelData, filteredData, movieData, bechdelClicked, genreClicked, yearClicked } from '$lib/stores.js'
+  import { filteredData, movieData, bechdelClicked, genreClicked, yearClicked } from '$lib/stores.js'
 	import MovieCard from '$lib/Components/MovieCard.svelte'
 	import Search from '$lib/Components/Search.svelte'
 	import Filter from '$lib/Components/Filter/Filter.svelte'
+	import FilterButton from '$lib/Components/Filter/FilterButton.svelte'
 	import { onMount } from 'svelte';
+	let clicked = false;
+	let genre;
+	$: console.log(genre)
 
 	let searchTerm;
 	// Taken from https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
@@ -45,18 +49,48 @@
 	$: {
 		if (searchTerm && searchTerm.length > 0) {
 			$filteredData;
-		} else {
-			if (!(bechdelClicked) || !(genreClicked) || !(yearClicked)) {
+		} else if (!($bechdelClicked) && !(genre) && !($yearClicked)) {
 				$filteredData = (getRandom($movieData, 18))
+		} else {
+			if ($bechdelClicked) {
+				// filter bechdel movies
+			}
+			if (genre) {
+				// filter genre movies
+				$filteredData = $movieData.filter(movie => {
+					let genrePresent = false;
+					if (movie.genres) {
+						movie.genres.forEach(movieGenre => {
+							if (genre == movieGenre.name) {
+								genrePresent = true
+							} else {
+								genrePresent = false
+							}
+						})
+						return genrePresent
+					}
+
+				})
+			} 
+			if ($yearClicked) {
+				// filter movies based on year
+
 			}
 		}
 	}
+	$: console.log($filteredData)
 </script>
 
-<div class="search-container">
-	<Search on:sendInput={debounce} bind:searchTerm />
-	<Filter />
+<div class="container">
+	<div class="search-container">
+		<div class="search">
+			<Search on:sendInput={debounce} bind:searchTerm />
+		</div>
+		<FilterButton bind:clicked /> 
+	</div>
 </div>
+<Filter bind:clicked bind:genre />
+
 
 <div class="movies">
 	{#each $filteredData as movie}
@@ -65,12 +99,16 @@
 </div>
 
 <style>
+	.container {
+		display: flex;
+		justify-content: center;
+	}
 	.search-container {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 1fr 110px;
 		grid-template-rows: auto 1fr;
-		width: 50%;
-		margin: auto;
+		/* width: 100%;
+		margin: 0 50%; */
 		justify-content: center;
 		margin-bottom: 1rem;
 	}

@@ -31,7 +31,7 @@
 	let showSearch = true;
 </script>
 
-<div class="search"
+<div
 on:click={(event) => {
 	showSearch = true;
 	event.stopPropagation();
@@ -62,7 +62,7 @@ on:click={(event) => {
 	}
 	input {
 		height: 2rem;
-		width: 40rem;
+		width: 60vw;
 		border: 1px solid #212121;
 		border-radius: 0.5rem;
 	}
@@ -97,5 +97,10 @@ on:click={(event) => {
 	.search-results:hover {
 		background-color: rgb(223, 219, 219);
 		cursor: pointer;
+	}
+	@media only screen and (min-width: 600px) {
+		input {
+			width: 40vw;
+		}
 	}
 </style>

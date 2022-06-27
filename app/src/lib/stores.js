@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import json from '../bechdel-data.json';
-import movieJson from '../movie-data-1.json';
+import movieJson from '../movie-data.json';
 
 export const bechdelData = writable(json)
 
@@ -19,9 +19,6 @@ bechdelData.subscribe(value => {
 	numMovies.subscribe(val => val['3'] = value.filter(movie => movie.rating == 3).length)
 })
 
-export const bechdelClicked = false;
-export const genreClicked = false;
-export const yearClicked = false;
-
-
-// filter(movie => movie.rating == 0).length
+export const bechdelClicked = writable(false);
+export const genreClicked = writable(false);
+export const yearClicked = writable(false);
