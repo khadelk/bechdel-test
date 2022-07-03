@@ -9,13 +9,8 @@
 	// export let genreClicked;
 
 	const handleClick = (e) => {
-		if (genre) {
-			genre = null
-			current = ''
-		} else {
-			genre = e.target.innerText;
-			current = genre
-		}
+		genre = e.target.innerText;
+		current = genre
 	}
 
 	$movieData.forEach(movie => {

@@ -6,6 +6,7 @@
 	import { genreClicked, yearClicked, bechdelClicked } from '$lib/stores.js'
 	export let clicked;
 	export let genre;
+	export let rating;
 </script>
 
 	{#if clicked}
@@ -29,7 +30,7 @@
 
 			</div>
 			<GenreFilter bind:genre />
-			<BechdelFilter />
+			<BechdelFilter bind:rating />
 			<YearFilter />
 		</div>
 	{/if}

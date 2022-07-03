@@ -19,6 +19,8 @@ bechdelData.subscribe(value => {
 	numMovies.subscribe(val => val['3'] = value.filter(movie => movie.rating == 3).length)
 })
 
+export let filteredBechdelData = writable([])
+
 export const bechdelClicked = writable(false);
 export const genreClicked = writable(false);
 export const yearClicked = writable(false);

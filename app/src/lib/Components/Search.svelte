@@ -11,7 +11,6 @@
 	function clickOutside(element, callbackFunction) {
 		function onClick(event) {
 			if (!element.contains(event.target)) {
-							console.log(event.target)
 
 				callbackFunction();
 			}
@@ -79,7 +78,7 @@ on:click={(event) => {
 		right: 0;
 		text-align: center;
 		margin-top: 2px;
-		z-index: 1;
+		z-index: 3;
 		position: absolute;
 		background-color: white;
 		border-radius: 10px;

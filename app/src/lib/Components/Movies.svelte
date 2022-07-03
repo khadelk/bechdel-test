@@ -1,37 +1,39 @@
 <script>
-  import { filteredData, movieData, bechdelClicked, genreClicked, yearClicked } from '$lib/stores.js'
+  import { filteredData, movieData, bechdelData, bechdelClicked, genreClicked, yearClicked, filteredBechdelData } from '$lib/stores.js'
 	import MovieCard from '$lib/Components/MovieCard.svelte'
 	import Search from '$lib/Components/Search.svelte'
 	import Filter from '$lib/Components/Filter/Filter.svelte'
 	import FilterButton from '$lib/Components/Filter/FilterButton.svelte'
-	import { onMount } from 'svelte';
+	import Pagination from '$lib/Components/Pagination.svelte';
+	// import filterMovies from '$lib/_utils/filterMovies'
 	let clicked = false;
 	let genre;
-	$: console.log(genre)
-
+	let rating;
 	let searchTerm;
+	$: console.log($filteredData)
+
 	// Taken from https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
-	function getRandom(arr, n) {
-		var result = new Array(n),
-		len = arr.length,
-		taken = new Array(len);
-		if (n > len)
-		throw new RangeError("getRandom: more elements taken than available");
-		while (n--) {
-			var x = Math.floor(Math.random() * len);
-			if (x in taken) {
-				if (arr[taken[x]].backdrop_path !== null && !(arr[taken[x]].status_code)) {
-					result[n] = arr[taken[x]]
-				}
-			} else if (arr[x].backdrop_path !== null && !(arr[x].status_code)) {
-				result[n] = arr[x]
-			} else {
-				n++
-			}
-			taken[x] = --len in taken ? taken[len] : len;
-		}
-		return result;
-	}
+	// function getRandom(arr, n) {
+	// 	var result = new Array(n),
+	// 	len = arr.length,
+	// 	taken = new Array(len);
+	// 	if (n > len)
+	// 	throw new RangeError("getRandom: more elements taken than available");
+	// 	while (n--) {
+	// 		var x = Math.floor(Math.random() * len);
+	// 		if (x in taken) {
+	// 			if (arr[taken[x]].backdrop_path !== null && !(arr[taken[x]].status_code)) {
+	// 				result[n] = arr[taken[x]]
+	// 			}
+	// 		} else if (arr[x].backdrop_path !== null && !(arr[x].status_code)) {
+	// 			result[n] = arr[x]
+	// 		} else {
+	// 			n++
+	// 		}
+	// 		taken[x] = --len in taken ? taken[len] : len;
+	// 	}
+	// 	return result;
+	// }
 
 	let timer;
 	const debounce = ((e) => {
@@ -50,10 +52,16 @@
 		if (searchTerm && searchTerm.length > 0) {
 			$filteredData;
 		} else if (!($bechdelClicked) && !(genre) && !($yearClicked)) {
-				$filteredData = (getRandom($movieData, 18))
+				$filteredData = $movieData.slice(0,18)
+				// filterMovies($movieData)
+				// (getRandom($movieData, 18))
 		} else {
-			if ($bechdelClicked) {
-				// filter bechdel movies
+			if (rating) {
+				$filteredData = $movieData.filter(movie => {
+					return $filteredBechdelData.some(data => {
+						return (movie.imdb_id && movie.imdb_id.slice(2) == data.imdbid) 							
+					})
+				})
 			}
 			if (genre) {
 				// filter genre movies
@@ -69,16 +77,13 @@
 						})
 						return genrePresent
 					}
-
 				})
 			} 
 			if ($yearClicked) {
 				// filter movies based on year
-
 			}
 		}
 	}
-	$: console.log($filteredData)
 </script>
 
 <div class="container">
@@ -89,14 +94,16 @@
 		<FilterButton bind:clicked /> 
 	</div>
 </div>
-<Filter bind:clicked bind:genre />
+<Filter bind:clicked bind:genre bind:rating />
 
 
-<div class="movies">
+<!-- <div class="movies">
 	{#each $filteredData as movie}
 		<MovieCard {movie} />
 	{/each}
-</div>
+</div> -->
+
+<Pagination />
 
 <style>
 	.container {

@@ -1,28 +1,19 @@
 <script>
 	import { slide } from 'svelte/transition';
-	import { bechdelData, filteredData, movieData, bechdelClicked} from '$lib/stores.js'
-	let clicked = false;
-	let filterBechdelData = false;
+	import { bechdelData, filteredBechdelData, filteredData, bechdelClicked} from '$lib/stores.js'
 	const bechdelNums = [0,1,2,3]
-	let filteredBechdelData = []
-	// export let bechdelClicked;
+	export let rating;
 
 	const filterByBechdel = (e, num) => {
-		filterBechdelData = true;
-		filteredBechdelData = $bechdelData.filter(data => {
-			return data.rating == num;
+		$bechdelClicked = true;
+		// $filteredData = []
+		rating = num;
+		$filteredBechdelData = $bechdelData.filter(data => {
+			return data.rating == rating;
 		})
 	}
 
-	$: {
-		if (filteredBechdelData.length > 0) { 
-			$filteredData = $movieData.filter(movie => {
-				return filteredBechdelData.forEach(data => {
-					return (movie.title == data.title)
-				})
-			})
-		}
-	}
+
 </script>
 
 <div class="bechdel">
