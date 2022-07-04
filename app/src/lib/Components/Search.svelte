@@ -28,6 +28,7 @@
 		}
 	}
 	let showSearch = true;
+	$: $filteredData
 </script>
 
 <div
@@ -44,7 +45,9 @@ on:click={(event) => {
 						showSearch = false;
 					}}>
 					{#each $filteredData as movie}
-						<a class="search-results" type="button" href="{movie.imdb_id.slice(2)}">{movie.title}</a>
+						<!-- {#if movie.imdb_id} -->
+						<a class="search-results" type="button" href="{movie.imdb_id}">{movie.title}</a>
+						<!-- {/if} -->
 					{/each}
 				</div>
 			<!-- {:else} -->

@@ -5,7 +5,7 @@
 <nav>
 	<ul>
 		<li on:click={() => clicked = 'Movies'} class="{clicked == 'Movies' ? 'selected' : ''}">
-			<a href="/">Movies</a>
+			<a href="./">Movies</a>
 		</li>
 		<li on:click={() => clicked = 'About'} class="{clicked == 'About' ? 'selected' : ''}">
 			<a href="./about">About the test</a>

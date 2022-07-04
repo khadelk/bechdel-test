@@ -6,9 +6,9 @@
 
 	let storeGenres = []
 	let clicked = false;
-	// export let genreClicked;
 
 	const handleClick = (e) => {
+		$genreClicked = true;
 		genre = e.target.innerText;
 		current = genre
 	}

@@ -6,7 +6,6 @@
 
 	const filterByBechdel = (e, num) => {
 		$bechdelClicked = true;
-		// $filteredData = []
 		rating = num;
 		$filteredBechdelData = $bechdelData.filter(data => {
 			return data.rating == rating;
