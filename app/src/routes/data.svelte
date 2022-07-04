@@ -5,4 +5,14 @@
 
 <NumMoviesByRating />
 
-<MoviesByGenre />
+<!-- <MoviesByGenre /> -->
+
+<div>
+	<h2>More data to come...</h2>
+</div>
+
+<style>
+	h2 {
+		text-align: center;
+	}
+</style>

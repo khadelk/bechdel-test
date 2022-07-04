@@ -1,5 +1,4 @@
 <script context="module">
-    // export const router = false;
     // wait for the data to become available before we do anything with it
     export async function load({fetch, params}) {
         const res = await fetch(
@@ -73,12 +72,32 @@
             </div>
         </li>
     </ul>
+    <div class="button">
+        <a href="https://imdb.com/title/{movie.imdb_id}">IMDB page
+        </a>
+    </div>
 </div>
 </div>
 
 </div>
 
-<style> 
+<style>
+    .button {
+		width: min-content;
+		align-items: center;
+		margin: 0 1rem;
+		padding: 0.5rem 1rem;
+		background-color: #212121;
+		border-radius: 0.4rem;
+		transition: 0.5s ease;
+		color: white;
+		cursor: pointer;
+		white-space: nowrap;
+    }
+    .button a {
+        text-decoration: none;
+        color: white;
+    }
     ul {
         list-style: none;
         padding-left: 0;

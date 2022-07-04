@@ -3,14 +3,14 @@
 	import { movieData, genreClicked } from '$lib/stores.js';
 	export let genre;
 	let current;
+	$: current = genre;
 
 	let storeGenres = []
-	let clicked = false;
+	// let clicked = false;
 
 	const handleClick = (e) => {
 		$genreClicked = true;
 		genre = e.target.innerText;
-		current = genre
 	}
 
 	$movieData.forEach(movie => {

@@ -12,6 +12,7 @@
 	let searchTerm;
 	let start = 0;
 	let end = 0;
+	let valuesYear = []
 
 	let timer;
 	const debounce = ((e) => {
@@ -22,15 +23,16 @@
 				if (data.title !== undefined) {
 					return (data.title).toLowerCase().includes(textInput.toLowerCase())
 				}
-			}).slice(0,18)
+			})
 		}, 300);
 	})
 
+	// filter our movies every time the DOM updates
 	$: {
 		if (searchTerm && searchTerm.length > 0) {
 			$filteredData;
 		} else if (!($bechdelClicked) && !(genre) && !($yearClicked)) {
-				$filteredData = ($movieData.filter(movie => movie.imdb_id))
+				$filteredData = ($movieData.filter(movie => movie.backdrop_path && movie.imdb_id))
 		} else {
 			if (rating) {
 				$filteredData = $movieData.filter(movie => {
@@ -57,11 +59,30 @@
 			} 
 			if ($yearClicked) {
 				// filter movies based on year
+				let minYear = valuesYear[0]
+				let maxYear = valuesYear[1]
+				$filteredData = $movieData.filter(movie => {
+					if (movie.release_date) {
+						let movieYear = parseInt(movie.release_date.slice(0,4))
+						return (minYear <= movieYear && maxYear >= movieYear)
+					}
+				})
 			}
 		}
 	}
 
+	const clearFilter = () => {
+		$yearClicked = false;
+		valuesYear[0] = Math.min(...$bechdelData.map(data => data.year))
+		valuesYear[1] = Math.max(...$bechdelData.map(data => data.year))
+		genre = null;
+		rating = null;
+		$filteredData = ($movieData.filter(movie => movie.backdrop_path))
+	}
+
 	$: displayMovies = $filteredData.slice(start, end)
+
+
 </script>
 
 <div class="container">
@@ -72,14 +93,17 @@
 		<FilterButton bind:clicked /> 
 	</div>
 </div>
-<Filter bind:clicked bind:genre bind:rating />
+
+<Filter on:clear={clearFilter} bind:clicked bind:genre bind:rating bind:valuesYear />
 
 
+{#key displayMovies}
 <div class="movies">
 	{#each displayMovies as movie}
 		<MovieCard {movie} />
 	{/each}
 </div>
+{/key}
 
 <Pagination bind:start bind:end />
 
@@ -92,15 +116,28 @@
 		display: grid;
 		grid-template-columns: 1fr 110px;
 		grid-template-rows: auto 1fr;
-		/* width: 100%;
-		margin: 0 50%; */
 		justify-content: center;
 		margin-bottom: 1rem;
 	}
 	.movies {
 		text-align: center;
-		display: grid;
 		justify-content: center;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
 	}
+
+	@media only screen and (min-width: 600px) {
+		.movies {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr) !important;
+
+		}
+	} 
+
+	@media only screen and (min-width: 370px) {
+		.movies {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+
+		}
+	} 
 </style>

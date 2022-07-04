@@ -44,13 +44,10 @@ on:click={(event) => {
 					use:clickOutside={() => {
 						showSearch = false;
 					}}>
-					{#each $filteredData as movie}
-						<!-- {#if movie.imdb_id} -->
-						<a class="search-results" type="button" href="{movie.imdb_id}">{movie.title}</a>
-						<!-- {/if} -->
+					{#each $filteredData.slice(0,16) as movie}
+						<a class="search-results" type="button" href="{movie.imdb_id.slice(2)}">{movie.title}</a>
 					{/each}
 				</div>
-			<!-- {:else} -->
 			{/if}
 		{/if}
 	</div>

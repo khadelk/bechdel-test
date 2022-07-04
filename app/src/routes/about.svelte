@@ -16,7 +16,6 @@
 	<p>
 		The Bechdel Test measures the representation of women in fiction. It asks three questions: 
 	</p>
-	
 		<ol>
 			<li>
 				Are there at least two named women in this film?
@@ -36,18 +35,23 @@
 		
 		The test is named after the cartoonist Alison Bechdel, and the test first appeared in her 1985 comic strip Dykes to Watch Out For.
 	</p>
+	<div class="comic-strip">
+		<img src="images/dykestowatchoutfor.jpeg" alt="bechdel test comic strip" />
+	</div>
 </div>
 
 </section>
 
-
-
-
 <style>
 	.about {
 		font-family: 'Montserrat', sans-serif;
-		padding: 2rem 8rem;
+		/* padding: 2rem 8rem; */
 		color: #212121;
+	}
+	@media only screen and (min-width: 1024px) {
+		.about {
+			padding: 2rem 8rem;
+	}
 	}
 	h2 {
 		font-family: Futura;
@@ -62,7 +66,7 @@
 	}
 	blockquote {
 		line-height: 1.6;
-		padding: 1 12rem;
+		/* padding: 1 12rem; */
 	}
 	blockquote p {
 		font-family: 'Montserrat', sans-serif;
@@ -75,6 +79,9 @@
 	.about-bechdel p {
 		font-family: 'Montserrat', sans-serif;
 		line-height: 1.6;
-		padding: 1rem 0;
+		padding: 1rem;
+	}
+	.comic-strip {
+		text-align: center;
 	}
 </style>

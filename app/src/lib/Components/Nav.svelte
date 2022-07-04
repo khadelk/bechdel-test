@@ -42,5 +42,7 @@
 	nav ul li a {
 		color: black;
 		text-decoration: none;
+		padding: 0.5rem 0rem;
 	}
+
 </style>

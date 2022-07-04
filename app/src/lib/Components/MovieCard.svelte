@@ -24,7 +24,7 @@
 		<a href="/{imdb_id}"> 
 		<div class="color-overlay">
 			<div class="text-overlay">
-				Bechdel Rating: {bechdelRating}
+				<div class="movie-title"> {movie.title} passes {bechdelRating}/3 tests </div>
 			</div>
 		</div>
 			<img src={"https://image.tmdb.org/t/p/w300" + movie.poster_path} alt="{movie.title}" title="Test">
@@ -66,6 +66,9 @@
 	}
 	.movie-card {
 		position: relative;
+	}
+	.movie-title {
+		white-space: normal
 	}
 	img {
 		display: block;
