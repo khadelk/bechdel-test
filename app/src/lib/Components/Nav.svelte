@@ -8,7 +8,7 @@
 			<a href="./">Movies</a>
 		</li>
 		<li on:click={() => clicked = 'About'} class="{clicked == 'About' ? 'selected' : ''}">
-			<a href="./about">About the test</a>
+			<a href="./about">About the Test</a>
 		</li>
 		<li on:click={() => clicked = 'Data'} class="{clicked == 'Data' ? 'selected' : ''}">
 			<a href="./data">Data</a>

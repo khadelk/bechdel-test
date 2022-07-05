@@ -5,7 +5,6 @@
 	import Filter from '$lib/Components/Filter/Filter.svelte'
 	import FilterButton from '$lib/Components/Filter/FilterButton.svelte'
 	import Pagination from '$lib/Components/Pagination.svelte';
-	// import filterMovies from '$lib/_utils/filterMovies'
 	let clicked = false;
 	let genre;
 	let rating;
@@ -29,12 +28,13 @@
 
 	// filter our movies every time the DOM updates
 	$: {
-		if (searchTerm && searchTerm.length > 0) {
-			$filteredData;
-		} else if (!($bechdelClicked) && !(genre) && !($yearClicked)) {
-				$filteredData = ($movieData.filter(movie => movie.backdrop_path && movie.imdb_id))
+		if (!($bechdelClicked) && !(genre) && !($yearClicked)) {
+			$filteredData = $movieData.filter(movie => movie.backdrop_path && movie.imdb_id).sort((a,b) => {
+				return parseInt(b.release_date.slice(0,4)) - parseInt(a.release_date.slice(0,4))
+			})
 		} else {
 			if (rating) {
+				// filter movies based on bechdel rating
 				$filteredData = $movieData.filter(movie => {
 					return $filteredBechdelData.some(data => {
 						return (movie.imdb_id && movie.imdb_id.slice(2) == data.imdbid) 							

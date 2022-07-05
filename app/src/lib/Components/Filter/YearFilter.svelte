@@ -1,12 +1,12 @@
 <script>
   import RangeSlider from "svelte-range-slider-pips";
 	import { slide } from 'svelte/transition';
-	import { yearClicked, bechdelData, bechdelClicked, genreClicked } from '$lib/stores.js'
+	import { yearClicked, bechdelData } from '$lib/stores.js'
 	export let valuesYear;
 	$: minYear = Math.min(...$bechdelData.map(data => data.year))
 	$: maxYear = Math.max(...$bechdelData.map(data => data.year))
 	$: valuesYear = [minYear, maxYear]
-	</script>
+</script>
 
 <div class="year" on:click={() => {$yearClicked = true}}>
 	{#if $yearClicked}

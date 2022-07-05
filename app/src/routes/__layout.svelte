@@ -7,14 +7,10 @@
 <header>
 <section class="heading">
 	<Nav />
-	<h1>the bechdel test</h1>
+	<h1>The Bechdel Test</h1>
 	<div class="def">
-		/bech·del test/ n.
-		<ol>
-			<li>1. It has to have at least two [named] women in it</li>
-			<li>2. Who talk to each other</li>
-			<li>3. About something besides a man</li>
-		</ol>
+		To pass the Bechdel test, a film must contain at least two named women characters who talk to each other about something other than a man. <br>
+		A red "X" indicates a movie doesn't pass the Bechdel test and a green checkmark indicates the movie passes the test.
 	</div>
 	</section>
 </header>
