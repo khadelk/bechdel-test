@@ -2,7 +2,7 @@
     // wait for the data to become available before we do anything with it
     export async function load({fetch, params}) {
         const res = await fetch(
-            `http://localhost:3000/api/movie/${params.id}.json`
+            `./api/movie/${params.id}.json`
         );
         const data = await res.json();
         if(res.ok) {

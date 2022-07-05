@@ -28,7 +28,7 @@ const manifest = {
   assets: /* @__PURE__ */ new Set(["Montserrat-Black.ttf", "Montserrat-BlackItalic.ttf", "Montserrat-Bold.ttf", "Montserrat-BoldItalic.ttf", "Montserrat-ExtraBold.ttf", "Montserrat-ExtraBoldItalic.ttf", "Montserrat-ExtraLight.ttf", "Montserrat-ExtraLightItalic.ttf", "Montserrat-Italic.ttf", "Montserrat-Light.ttf", "Montserrat-LightItalic.ttf", "Montserrat-Medium.ttf", "Montserrat-MediumItalic.ttf", "Montserrat-Regular.ttf", "Montserrat-SemiBold.ttf", "Montserrat-SemiBoldItalic.ttf", "Montserrat-Thin.ttf", "Montserrat-ThinItalic.ttf", "favicon.png", "fonts.css", "images/dykestowatchoutfor.jpeg"]),
   _: {
     mime: { ".ttf": "font/ttf", ".png": "image/png", ".css": "text/css", ".jpeg": "image/jpeg" },
-    entry: { "file": "start-4d4c1fa7.js", "js": ["start-4d4c1fa7.js", "chunks/vendor-5019805d.js"], "css": ["assets/vendor-dc74a490.css"] },
+    entry: { "file": "start-de4e63b5.js", "js": ["start-de4e63b5.js", "chunks/vendor-5019805d.js"], "css": ["assets/vendor-dc74a490.css"] },
     nodes: [
       () => Promise.resolve().then(() => __toESM(require("./nodes/0.js"))),
       () => Promise.resolve().then(() => __toESM(require("./nodes/1.js"))),
