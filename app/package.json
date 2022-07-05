@@ -1,6 +1,9 @@
 {
   "name": "my-app",
   "version": "0.0.1",
+  "engines": {    
+    "node": "17.x"
+},
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
