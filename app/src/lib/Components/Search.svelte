@@ -55,10 +55,6 @@ on:click={(event) => {
 
 
 <style>
-	.search {
-		text-align: center;
-		/* margin-bottom: 1rem; */
-	}
 	input {
 		height: 2rem;
 		width: 60vw;

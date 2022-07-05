@@ -3,7 +3,7 @@ export const manifest = {
 	assets: new Set(["Montserrat-Black.ttf","Montserrat-BlackItalic.ttf","Montserrat-Bold.ttf","Montserrat-BoldItalic.ttf","Montserrat-ExtraBold.ttf","Montserrat-ExtraBoldItalic.ttf","Montserrat-ExtraLight.ttf","Montserrat-ExtraLightItalic.ttf","Montserrat-Italic.ttf","Montserrat-Light.ttf","Montserrat-LightItalic.ttf","Montserrat-Medium.ttf","Montserrat-MediumItalic.ttf","Montserrat-Regular.ttf","Montserrat-SemiBold.ttf","Montserrat-SemiBoldItalic.ttf","Montserrat-Thin.ttf","Montserrat-ThinItalic.ttf","favicon.png","fonts.css","images/dykestowatchoutfor.jpeg"]),
 	_: {
 		mime: {".ttf":"font/ttf",".png":"image/png",".css":"text/css",".jpeg":"image/jpeg"},
-		entry: {"file":"start-d6a7d488.js","js":["start-d6a7d488.js","chunks/vendor-5019805d.js"],"css":["assets/vendor-dc74a490.css"]},
+		entry: {"file":"start-4d4c1fa7.js","js":["start-4d4c1fa7.js","chunks/vendor-5019805d.js"],"css":["assets/vendor-dc74a490.css"]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),

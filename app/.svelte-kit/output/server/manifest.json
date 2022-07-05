@@ -20,7 +20,7 @@
       "_index-76a30155.js"
     ],
     "css": [
-      "assets/entries/pages/__layout.svelte-018a0d17.css"
+      "assets/entries/pages/__layout.svelte-ac34810b.css"
     ],
     "assets": [
       "assets/montserrat-cyrillic-ext-400-normal-561c77cb.woff2",
@@ -47,7 +47,7 @@
       "_stores-eeb6b843.js"
     ],
     "css": [
-      "assets/entries/pages/index.svelte-88e441ae.css"
+      "assets/entries/pages/index.svelte-c24e2d96.css"
     ]
   },
   "src/routes/about.svelte": {

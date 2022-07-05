@@ -49,9 +49,7 @@
 	header {
 		text-align: center;
 	}
-	ol li {
-		list-style: none;
-	}
+
 </style>
 
 <slot></slot>

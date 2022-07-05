@@ -14,13 +14,13 @@ const Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 var index = "";
 var __layout_svelte_svelte_type_style_lang = "";
 const css = {
-  code: "h1{font-family:'Futura';color:#212121}section, p, div{font-family:'Open Sans', sans-serif}header.svelte-f5nhno{margin:1rem}.heading.svelte-f5nhno{height:min-content;color:#212121;display:flex;flex-direction:column;flex-flow:column;align-items:center;justify-content:center}@media only screen and (min-width: 624px){h1.svelte-f5nhno{font-size:4rem}}h1.svelte-f5nhno{font-family:'Futura';text-align:center;margin:1rem 0}header.svelte-f5nhno{text-align:center}",
+  code: "h1{font-family:'Futura';color:#212121}section, p, div{font-family:'Open Sans', sans-serif}header.svelte-1im9ei9{margin:1rem}.heading.svelte-1im9ei9{height:min-content;color:#212121;display:flex;flex-direction:column;flex-flow:column;align-items:center;justify-content:center}@media only screen and (min-width: 624px){h1.svelte-1im9ei9{font-size:4rem}}h1.svelte-1im9ei9{font-family:'Futura';text-align:center;margin:1rem 0}header.svelte-1im9ei9{text-align:center}",
   map: null
 };
 const _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css);
-  return `<header class="${"svelte-f5nhno"}"><section class="${"heading svelte-f5nhno"}">${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
-	<h1 class="${"svelte-f5nhno"}">The Bechdel Test</h1>
+  return `<header class="${"svelte-1im9ei9"}"><section class="${"heading svelte-1im9ei9"}">${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
+	<h1 class="${"svelte-1im9ei9"}">The Bechdel Test</h1>
 	<div class="${"def"}">To pass the Bechdel test, a film must contain at least two named women characters who talk to each other about something other than a man. <br>
 		A red &quot;X&quot; indicates a movie doesn&#39;t pass the Bechdel test and a green checkmark indicates the movie passes the test.
 	</div></section></header>

@@ -28,7 +28,7 @@ const MovieCard = create_ssr_component(($$result, $$props, $$bindings, slots) =>
 });
 var Search_svelte_svelte_type_style_lang = "";
 const css$8 = {
-  code: "input.svelte-1x8rgqh{height:2rem;width:60vw;border:1px solid #212121;border-radius:0.5rem}input.svelte-1x8rgqh:focus{border:1px solid #212121}.dropdown-results.svelte-1x8rgqh{max-width:400px;margin-left:auto;margin-right:auto;left:0;right:0;text-align:center;margin-top:2px;z-index:3;position:absolute;background-color:white;border-radius:10px}a.svelte-1x8rgqh{color:black;line-height:1.5rem;text-decoration:none}.search-results.svelte-1x8rgqh{display:block;padding:0.5rem 0}.search-results.svelte-1x8rgqh:hover{background-color:rgb(223, 219, 219);cursor:pointer}@media only screen and (min-width: 600px){input.svelte-1x8rgqh{width:40vw}}",
+  code: "input.svelte-2o8lrq{height:2rem;width:60vw;border:1px solid #212121;border-radius:0.5rem}input.svelte-2o8lrq:focus{border:1px solid #212121}.dropdown-results.svelte-2o8lrq{max-width:400px;margin-left:auto;margin-right:auto;left:0;right:0;text-align:center;margin-top:2px;z-index:3;position:absolute;background-color:white;border-radius:10px}a.svelte-2o8lrq{color:black;line-height:1.5rem;text-decoration:none}.search-results.svelte-2o8lrq{display:block;padding:0.5rem 0}.search-results.svelte-2o8lrq:hover{background-color:rgb(223, 219, 219);cursor:pointer}@media only screen and (min-width: 600px){input.svelte-2o8lrq{width:40vw}}",
   map: null
 };
 const Search = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -40,9 +40,9 @@ const Search = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.searchTerm(searchTerm);
   $$result.css.add(css$8);
   $$unsubscribe_filteredData();
-  return `<div><input type="${"text"}" id="${"movie-search"}" placeholder="${"Search movie..."}" autocomplete="${"off"}" class="${"svelte-1x8rgqh"}"${add_attribute("value", searchTerm, 0)}>
-	<div class="${"dropdown-results svelte-1x8rgqh"}">${searchTerm ? `${`<div class="${"modal"}">${each($filteredData.slice(0, 16), (movie) => {
-    return `<a class="${"search-results svelte-1x8rgqh"}" type="${"button"}"${add_attribute("href", movie.imdb_id.slice(2), 0)}>${escape(movie.title)}</a>`;
+  return `<div><input type="${"text"}" id="${"movie-search"}" placeholder="${"Search movie..."}" autocomplete="${"off"}" class="${"svelte-2o8lrq"}"${add_attribute("value", searchTerm, 0)}>
+	<div class="${"dropdown-results svelte-2o8lrq"}">${searchTerm ? `${`<div class="${"modal"}">${each($filteredData.slice(0, 16), (movie) => {
+    return `<a class="${"search-results svelte-2o8lrq"}" type="${"button"}"${add_attribute("href", movie.imdb_id.slice(2), 0)}>${escape(movie.title)}</a>`;
   })}</div>`}` : ``}</div>
 </div>`;
 });
