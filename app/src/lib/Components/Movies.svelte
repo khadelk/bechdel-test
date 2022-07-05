@@ -22,6 +22,8 @@
 				if (data.title !== undefined) {
 					return (data.title).toLowerCase().includes(textInput.toLowerCase())
 				}
+			}).sort((a,b) => {
+				return parseInt(b.release_date.slice(0,4)) - parseInt(a.release_date.slice(0,4))
 			})
 		}, 300);
 	})

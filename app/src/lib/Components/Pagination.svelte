@@ -5,10 +5,15 @@
 	let numItemsInData;
 	let page = 1;
 
+	let numPagesArr;
 	$: numItemsInData = $filteredData.length
 	$: numItemsOnEachPage = 16;
 	$: numPages = Math.ceil(numItemsInData / numItemsOnEachPage) - 1;
-	$: numPagesArr = Array.from(Array(numPages).keys()).map(x => ++x)
+	$: {
+		if (numPages > 0) {
+			numPagesArr = Array.from(Array(numPages).keys()).map(x => ++x)
+		}
+	}
 	$: start = page > 1 ? page * numItemsOnEachPage : 0
 	$: end = start + numItemsOnEachPage 
 	$: clicked = page;
