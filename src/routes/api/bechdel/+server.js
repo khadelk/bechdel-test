@@ -9,7 +9,7 @@ export async function GET() {
 					{body: data}
 				), 
 				{headers: new Headers({
-					'cache-control': 'public, max-age=86400'
+					'cache-control': 'public, max-age=10'
 				})}
 			);
 		}

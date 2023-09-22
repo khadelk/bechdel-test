@@ -1,6 +1,8 @@
 <script>
 	import Nav from '$lib/Components/Nav.svelte';
 	import "@fontsource/montserrat";
+	export let data;
+	let movies = data.bechdel.body;
 	
 </script>
 <svelte:head>
