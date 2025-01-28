@@ -1,12 +1,13 @@
 <script>
 	import Movies from '$lib/Components/Movies.svelte';
 	export let data;
-	let allMovies = data.bechdel.body;
+	let allMovies = data.bechdel;
 
 	let start = 0;
 	let end = 16;
 
-	let movies = allMovies.slice(start, end);
+	let reversedMovies = allMovies.reverse();
+	let movies = reversedMovies.slice(start, end);
 	console.log(movies);
 
 	let i = 0;
@@ -29,11 +30,8 @@
 				i++;
 			}
 		}
-		console.log(movieData);
 	};
 	fetchMovies();
-	console.log(movieData);
-	console.log(i);
 </script>
 
 <!-- <Movies {movies} /> -->
