@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import json from '../bechdel-data.json';
+import json from '$lib/combined.json';
 import movieJson from '../movie-data.json';
 
 export const bechdelData = writable(json);

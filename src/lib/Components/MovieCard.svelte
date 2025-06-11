@@ -2,7 +2,7 @@
 	import { bechdelData } from '$lib/stores'
 	export let movie;
 	let imdb_id;
-	imdb_id = movie?.imdb_id?.slice(2);
+	imdb_id = movie?.imdbid?.slice(2);
 	let bechdelMovie=[];
 
 	$: bechdelMovie = $bechdelData.filter(data => {

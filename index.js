@@ -54,7 +54,7 @@ const data = await fetch('http://bechdeltest.com/api/v1/getAllMovies')
 				await createData(d[curr]);
 				curr++
 			}
-			fs.writeFile('combined.json', JSON.stringify(newData), (err) => {
+			fs.writeFile('./src/lib/combined.json', JSON.stringify(newData), (err) => {
 				if (err) return err;
 			});
 		}).catch(function(err) {

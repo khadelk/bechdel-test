@@ -1,4 +1,3 @@
-
 export async function GET() {
 	// return new Response(JSON.stringify({message: "Hello"}), { status: 200 })
 		const res = await fetch(`http://bechdeltest.com/api/v1/getAllMovies`);

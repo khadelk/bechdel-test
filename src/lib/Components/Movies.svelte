@@ -1,7 +1,6 @@
 <script>
 	import {
 		filteredData,
-		movieData,
 		bechdelData,
 		bechdelClicked,
 		genreClicked,
@@ -18,48 +17,49 @@
 	let rating;
 	let searchTerm;
 	let start = 0;
-	let end = 0;
+	let end = 16;
 	let valuesYear = [];
-	// console.log($movieData);
-	// console.log(movies);
 
 	let timer;
 	const debounce = (e) => {
 		let textInput = e.detail;
 		clearTimeout(timer);
 		timer = setTimeout(() => {
-			$filteredData = $movieData
+			$filteredData = $bechdelData
 				.filter((data) => {
 					if (data.title !== undefined) {
 						return data.title.toLowerCase().includes(textInput.toLowerCase());
 					}
 				})
 				.sort((a, b) => {
-					return parseInt(b.release_date.slice(0, 4)) - parseInt(a.release_date.slice(0, 4));
+
+					return b.year - a.year;
 				});
 		}, 300);
 	};
 
+	$filteredData = $bechdelData
+
 	// filter our movies every time the DOM updates
 	$: {
 		if (!$bechdelClicked && !genre && !$yearClicked) {
-			$filteredData = $movieData
-				.filter((movie) => movie.backdrop_path && movie.imdb_id)
+			$filteredData = $bechdelData
+				.filter((movie) => movie.backdrop_path && movie.imdbid)
 				.sort((a, b) => {
-					return parseInt(b.release_date.slice(0, 4)) - parseInt(a.release_date.slice(0, 4));
+					return b.year - a.year;
 				});
 		} else {
 			if (rating) {
 				// filter movies based on bechdel rating
-				$filteredData = $movieData.filter((movie) => {
+				$filteredData = $bechdelData.filter((movie) => {
 					return $filteredBechdelData.some((data) => {
-						return movie.imdb_id && movie.imdb_id.slice(2) == data.imdbid;
+						return movie.imdbid && movie.imdbid.slice(2) == data.imdbid;
 					});
 				});
 			}
 			if (genre) {
 				// filter genre movies
-				$filteredData = $movieData.filter((movie) => {
+				$filteredData = $bechdelData.filter((movie) => {
 					let genrePresent = false;
 					if (movie.genres) {
 						movie.genres.forEach((movieGenre) => {
@@ -77,9 +77,9 @@
 				// filter movies based on year
 				let minYear = valuesYear[0];
 				let maxYear = valuesYear[1];
-				$filteredData = $movieData.filter((movie) => {
-					if (movie.release_date) {
-						let movieYear = parseInt(movie.release_date.slice(0, 4));
+				$filteredData = $bechdelData.filter((movie) => {
+					if (movie.year) {
+						let movieYear = movie.year;
 						return minYear <= movieYear && maxYear >= movieYear;
 					}
 				});
@@ -93,7 +93,7 @@
 		valuesYear[1] = Math.max(...movies.map((data) => data.year));
 		genre = null;
 		rating = null;
-		$filteredData = $movieData.filter((movie) => movie.backdrop_path);
+		$filteredData = $bechdelData.filter((movie) => movie.backdrop_path);
 	};
 
 	$: displayMovies = $filteredData.slice(start, end);
