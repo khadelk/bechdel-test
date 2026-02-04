@@ -1,11 +1,7 @@
-export const load = ({ fetch }) => {
-	const fetchBechdel = async () => {
-		const res = await fetch('/api/bechdel');
-		const data = await res.json();
-		return data;
-	}
+import data from '$lib/combined.json';
 
+export const load = async () => {
 	return {
-		bechdel: fetchBechdel()
-	}
-}
+		bechdel: data
+	};
+};

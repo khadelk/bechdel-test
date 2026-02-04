@@ -1,15 +1,13 @@
 	// wait for the data to become available before we do anything with it
-	export async function load({fetch, params}) {
-		const fetchMovie = async() => {
-			const res = await fetch(
-				`../api/movie/${params.id}`
-			);
-			const data = await res.json();
-			if(res.ok) {
-					return data;
-			}
-		}
+	import json from '../../lib/combined.json'
+
+	export async function load({params}) {
+
+		let movie = json.find((data) => {
+			return data.imdbid == params.id.toString();
+		});
+
 		return {
-			movie: fetchMovie()
+			movie: movie
 		}
 	}

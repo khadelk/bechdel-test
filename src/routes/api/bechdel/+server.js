@@ -1,4 +1,3 @@
-
 export async function GET() {
 	// return new Response(JSON.stringify({message: "Hello"}), { status: 200 })
 		const res = await fetch(`http://bechdeltest.com/api/v1/getAllMovies`);
@@ -9,7 +8,7 @@ export async function GET() {
 					{body: data}
 				), 
 				{headers: new Headers({
-					'cache-control': 'public, max-age=86400'
+					'cache-control': 'public, max-age=10'
 				})}
 			);
 		}
