@@ -1,19 +1,12 @@
 <script>
-	import { bechdelData } from '$lib/stores';
 	export let data;
-	let movie = data.movie.body;
-
-	let bechdelMovie = $bechdelData.filter((data) => {
-		return data.imdbid == movie.imdb_id.slice(2);
-	});
-	let bechdelRating = bechdelMovie[0].rating;
+	let movie = data.movie;
 </script>
 
 <div
 	class="movie-info"
-	style="background-image: linear-gradient(#e6646580, #9198e580), url("{'https://image.tmdb.org/t/p/original' +
-		movie.backdrop_path}")"
->
+	style='background-image: linear-gradient(#e6646580, #9198e580), url("{'https://image.tmdb.org/t/p/original' + movie.backdrop_path}")'
+	>
 	<div class="col-1">
 		<img class="movie-poster" src={'https://image.tmdb.org/t/p/w300' + movie.poster_path} alt={movie.title} />
 	</div>
@@ -21,12 +14,12 @@
 	<div class="col-2">
 		<div class="col-2-container">
 			<h1>{movie.title}</h1>
-			<div>The Bechdel Rating for <em> {movie.title} </em> is {bechdelRating}</div>
+			<div>The Bechdel Rating for <em> {movie.title} </em> is {movie.rating}</div>
 			<ul>
 				<li>
 					<div class="rating">
 						<span>
-							{#if bechdelRating >= 1}
+							{#if movie.rating >= 1}
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
 									><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path
 										d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
@@ -46,7 +39,7 @@
 				<li>
 					<div class="rating">
 						<span>
-							{#if bechdelRating >= 2}
+							{#if movie.rating >= 2}
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
 									><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path
 										d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
@@ -66,7 +59,7 @@
 				<li>
 					<div class="rating">
 						<span>
-							{#if bechdelRating == 3}
+							{#if movie.rating == 3}
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
 									><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path
 										d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
@@ -85,11 +78,13 @@
 				</li>
 			</ul>
 			<div class="button">
-				<a href="https://imdb.com/title/{movie.imdb_id}">IMDB page </a>
+				<a href="https://imdb.com/title/tt{movie.imdbid}">IMDB page </a>
 			</div>
 		</div>
 	</div>
 </div>
+
+
 
 <style>
 	.button {
