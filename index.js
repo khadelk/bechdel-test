@@ -1,8 +1,6 @@
 import * as http from 'node:http';
 import * as fs from 'fs';
 import dotenv from 'dotenv';
-// import { fetch, setGlobalDispatcher, Agent } from 'undici';
-// setGlobalDispatcher(new Agent({ connect: { timeout: 100_000 } }));
 
 dotenv.config();
 
@@ -22,9 +20,13 @@ async function getMovieData(movie) {
 	return movies;
 }
 
+import combined from './src/lib/combined.json' assert { type: 'json' };
+const currMovieData = combined.length && combined.length > 0 ? combined : [];
+
 const newData = [];
 
 async function createData(currItem) {
+	// Get additional IMDB movie data
 	const imdbData = await getMovieData(currItem.imdbid);
 	const newObj = currItem;
 	newObj.backdrop_path = imdbData?.backdrop_path;
@@ -35,46 +37,54 @@ async function createData(currItem) {
 	newData.push(newObj);
 }
 
-function timeout(ms) {
-	return new Promise((resolve) => setTimeout(resolve, ms));
-}
+const startTime = performance.now();
 
-const startTime = performance.now()
-
+// Fetch films from Bechdel API
 const data = await fetch('http://bechdeltest.com/api/v1/getAllMovies')
 	.then(async (response) => {
 		const data = response.json();
-		data.then(async (d) => {
-			let curr = 0;
-			let currEnd = d.length;
-			console.log('🚀 ~ data.then ~ currEnd:', currEnd);
+		data
+			.then(async (d) => {
+				let curr = 0;
+				// Get the number of films in the database
+				let currEnd = d.length;
+				let currMovieDataEnd = currMovieData.length;
 
-			while (curr < currEnd) {
-				console.log(curr)
-				await createData(d[curr]);
-				curr++
-			}
-			fs.writeFile('./src/lib/combined.json', JSON.stringify(newData), (err) => {
-				if (err) return err;
+				// If the counter is the same length as what's in the bechdel API, that means there are no new movies to add.
+				if (currMovieDataEnd == currEnd) {
+					console.log('No new data to add. Exiting');
+					return;
+				}
+
+				// While the counter is less than the length of the database, call createData on the item
+				// At the current index of the database
+				curr = currMovieDataEnd;
+				while (curr < currEnd) {
+					await createData(d[curr]);
+					curr++;
+				}
+
+				const updatedCombined = combined.concat(newData);
+
+				fs.writeFile('./src/lib/combined.json', JSON.stringify(updatedCombined), (err) => {
+					if (err) return err;
+				});
+			})
+			.catch(function (err) {
+				console.log('Error', err);
+			})
+			.finally(function () {
+				console.log('done');
+				const endTime = performance.now();
+				console.log(`Call took ${endTime - startTime} milliseconds`);
 			});
-		}).catch(function(err) {
-			console.log('Error', err)
-		}).finally(function() {
-			console.log('done')
-		});
 	})
 	.catch(function (err) {
 		console.log('Unable to fetch -', err);
 	})
 	.finally(() => {
-		console.log('Done.')
+		console.log('Done.');
 	});
-
-	const endTime = performance.now();
-
-	console.log(`Call to doSomething took ${endTime - startTime} milliseconds`);
-
-
 
 server.listen(port, hostname, () => {
 	console.log(`Server running at http://${hostname}:${port}/`);
