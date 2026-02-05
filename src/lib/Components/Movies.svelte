@@ -11,7 +11,7 @@
 	import Search from '$lib/Components/Search.svelte';
 	import Filter from '$lib/Components/Filter/Filter.svelte';
 	import FilterButton from '$lib/Components/Filter/FilterButton.svelte';
-	export let movies;
+	// export let movies;
 	let clicked = false;
 	let genre;
 	let rating;
@@ -88,12 +88,12 @@
 	}
 
 	const clearFilter = () => {
-		$yearClicked = false;
-		valuesYear[0] = Math.min(...movies.map((data) => data.year));
-		valuesYear[1] = Math.max(...movies.map((data) => data.year));
-		genre = null;
-		rating = null;
-		$filteredData = $bechdelData.filter((movie) => movie.backdrop_path);
+	// 	$yearClicked = false;
+	// 	valuesYear[0] = Math.min(...movies.map((data) => data.year));
+	// 	valuesYear[1] = Math.max(...movies.map((data) => data.year));
+	// 	genre = null;
+	// 	rating = null;
+	// 	$filteredData = $bechdelData.filter((movie) => movie.backdrop_path);
 	};
 
 	$: displayMovies = $filteredData.slice(start, end);
