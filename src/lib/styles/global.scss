@@ -1,0 +1,5 @@
+@use './variables.scss' as *;
+
+:root {
+  --bg-color: #{$bg-color};
+}
