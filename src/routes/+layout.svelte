@@ -1,30 +1,33 @@
 <script>
-	import '$lib/styles/global.scss';
-	// import Nav from '$lib/Components/Nav.svelte';
-	import "@fontsource/montserrat";
-	
+  import '$lib/styles/global.scss'
+  import 'normalize.css'
+  // import Nav from '$lib/Components/Nav.svelte';
+  import '@fontsource/montserrat'
 </script>
+
 <svelte:head>
-	<title>
-		Bechdel Test
-	</title>
+  <title>Bechdel Test</title>
 </svelte:head>
-<header>
+
+<slot></slot>
+
+<!-- <header>
 <section class="heading">
 	
 	</section>
-</header>
+</header> -->
 
 <style>
-	:global(h1) {
-		font-family: 'Futura';
-		color: #212121;
-	}
-	:global(section, p, div) {
-		font-family: 'Open Sans', sans-serif;
-	}
-	header {
+  :global(h1) {
+    font-family: 'Futura';
+    color: #212121;
+  }
+  :global(section, p, div) {
+    font-family: 'Open Sans', sans-serif;
+  }
+  /* header {
 		margin: 1rem;
+		text-align: center;
 	}
 	.heading {
 		height: min-content;
@@ -45,9 +48,6 @@
 		text-align: center;
 		margin: 1rem 0;
 	}
-	header {
-		text-align: center;
-	}
 	.x-circle {
 		z-index:2;
 		width: 16px;
@@ -63,8 +63,5 @@
 		fill: rgb(44, 194, 44);
 		position: relative;
 		top: 1.5px;
-	}
-
+	} */
 </style>
-
-<slot></slot>
