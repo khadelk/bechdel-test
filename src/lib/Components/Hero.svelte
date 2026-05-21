@@ -1,18 +1,18 @@
 <script>
   // import images for the film section from $lib/assets and create a film array with the image and the percentage range for when it should appear
-  import realpain from '$lib/assets/a-real-pain.jpg'
-  import beau from '$lib/assets/beau.png'
-  import challengers from '$lib/assets/challengers.jpg'
-  import stillhere from '$lib/assets/im-still-here.jpeg'
-  import kimi from '$lib/assets/kimi.jpg'
-  import substance from '$lib/assets/substance.jpg'
-  import brutalist from '$lib/assets/brutalist.webp'
+  import realpain from '$lib/assets/a-real-pain.jpg';
+  import beau from '$lib/assets/beau.png';
+  import challengers from '$lib/assets/challengers.jpg';
+  import stillhere from '$lib/assets/im-still-here.jpeg';
+  import kimi from '$lib/assets/kimi.jpg';
+  import substance from '$lib/assets/substance.jpg';
+  import brutalist from '$lib/assets/brutalist.webp';
 
-  let sectionBounds = {}
-  let wrapper
-  let windowHeight
-  let scrollY = 0
-  let percentage = $state(0)
+  let sectionBounds = {};
+  let wrapper;
+  let windowHeight;
+  let scrollY = 0;
+  let percentage = $state(0);
   const hero = [
     {
       h1: 'What is the Bechdel Test?',
@@ -24,7 +24,7 @@
       start: 50,
       end: 100,
     },
-  ]
+  ];
   const films = [
     { image: realpain, start: 0, end: 60, top: -110, left: -120, zIndex: 2 },
     { image: beau, start: 0, end: 60, top: 220, left: 50, zIndex: 7 },
@@ -33,25 +33,25 @@
     { image: kimi, start: 0, end: 60, top: 140, left: -100, zIndex: 1 },
     { image: substance, start: 0, end: 60, top: 140, left: 180, zIndex: 1 },
     { image: brutalist, start: 0, end: 60, top: -100, left: 200, zIndex: 2 },
-  ]
+  ];
 
   // TODO: calculate the scroll position and update the hero text accordingly
   function handleScroll(event) {
     // Get info about the section position and height
-    sectionBounds = wrapper?.getBoundingClientRect()
+    sectionBounds = wrapper?.getBoundingClientRect();
 
     // Calculate total scroll percentage from 0 to 100
-    const documentHeight = document.documentElement.scrollHeight
-    percentage = (scrollY / (documentHeight - windowHeight)) * 100
+    const documentHeight = document.documentElement.scrollHeight;
+    percentage = (scrollY / (documentHeight - windowHeight)) * 100;
   }
 
   function calculateRange(start, end) {
-    let state = 'before-range'
+    let state = 'before-range';
 
-    if (percentage >= start && percentage <= end) state = 'in-range'
-    if (percentage > end) state = 'after-range'
+    if (percentage >= start && percentage <= end) state = 'in-range';
+    if (percentage > end) state = 'after-range';
 
-    return state
+    return state;
   }
 </script>
 
