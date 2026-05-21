@@ -1,8 +1,8 @@
 <script>
-  import '$lib/styles/global.scss'
-  import 'normalize.css'
+  import '$lib/styles/global.scss';
+  import 'normalize.css';
   // import Nav from '$lib/Components/Nav.svelte';
-  import '@fontsource/montserrat'
+  import '@fontsource/montserrat';
 </script>
 
 <svelte:head>

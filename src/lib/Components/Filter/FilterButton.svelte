@@ -1,11 +1,11 @@
 <script>
-  export let clicked
+  export let clicked;
 </script>
 
 <div
   class={clicked ? 'filter-button button clicked' : 'filter-button button'}
   on:click={(e) => {
-    clicked = !clicked
+    clicked = !clicked;
   }}
 >
   <span>filter</span>

@@ -1,34 +1,34 @@
 <script>
-  import GenreFilter from '$lib/Components/Filter/GenreFilter.svelte'
-  import BechdelFilter from '$lib/Components/Filter/BechdelFilter.svelte'
-  import YearFilter from '$lib/Components/Filter/YearFilter.svelte'
-  import { slide } from 'svelte/transition'
-  import { createEventDispatcher } from 'svelte'
-  import { genreClicked, yearClicked, bechdelClicked } from '$lib/stores.js'
-  export let clicked
-  export let genre
-  export let rating
-  export let valuesYear
+  import GenreFilter from '$lib/Components/Filter/GenreFilter.svelte';
+  import BechdelFilter from '$lib/Components/Filter/BechdelFilter.svelte';
+  import YearFilter from '$lib/Components/Filter/YearFilter.svelte';
+  import { slide } from 'svelte/transition';
+  import { createEventDispatcher } from 'svelte';
+  import { genreClicked, yearClicked, bechdelClicked } from '$lib/stores.js';
+  export let clicked;
+  export let genre;
+  export let rating;
+  export let valuesYear;
   $: {
     if ($bechdelClicked) {
-      $yearClicked = false
-      $genreClicked = false
+      $yearClicked = false;
+      $genreClicked = false;
     }
     if ($yearClicked) {
-      $genreClicked = false
-      $bechdelClicked = false
+      $genreClicked = false;
+      $bechdelClicked = false;
     }
     if ($genreClicked) {
-      $bechdelClicked = false
-      $yearClicked = false
+      $bechdelClicked = false;
+      $yearClicked = false;
     }
   }
 
-  const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher();
 
   const clearFilters = () => {
-    dispatch('clear')
-  }
+    dispatch('clear');
+  };
 </script>
 
 {#if clicked}

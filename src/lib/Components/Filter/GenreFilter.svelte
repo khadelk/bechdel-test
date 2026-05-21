@@ -1,30 +1,30 @@
 <script>
-  import { slide } from 'svelte/transition'
-  import { movieData, genreClicked } from '$lib/stores.js'
-  export let genre
-  let current
-  $: current = genre
+  import { slide } from 'svelte/transition';
+  import { movieData, genreClicked } from '$lib/stores.js';
+  export let genre;
+  let current;
+  $: current = genre;
 
-  let storeGenres = []
+  let storeGenres = [];
   // let clicked = false;
 
   const handleClick = (e) => {
-    $genreClicked = true
-    genre = e.target.innerText
-  }
+    $genreClicked = true;
+    genre = e.target.innerText;
+  };
 
   $movieData.forEach((movie) => {
     if (movie.genres) {
       movie.genres.forEach((genre) => {
         if (storeGenres[genre.name] >= 1) {
-          storeGenres[genre.name] += 1
+          storeGenres[genre.name] += 1;
         } else {
-          storeGenres[genre.name] = 1
+          storeGenres[genre.name] = 1;
         }
-      })
+      });
     }
-  })
-  let genres = Object.keys(storeGenres)
+  });
+  let genres = Object.keys(storeGenres);
 </script>
 
 <div class="genre-options">

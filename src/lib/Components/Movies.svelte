@@ -6,38 +6,38 @@
     genreClicked,
     yearClicked,
     filteredBechdelData,
-  } from '$lib/stores.js'
-  import MovieCard from '$lib/Components/MovieCard.svelte'
-  import Search from '$lib/Components/Search.svelte'
-  import Filter from '$lib/Components/Filter/Filter.svelte'
-  import FilterButton from '$lib/Components/Filter/FilterButton.svelte'
+  } from '$lib/stores.js';
+  import MovieCard from '$lib/Components/MovieCard.svelte';
+  import Search from '$lib/Components/Search.svelte';
+  import Filter from '$lib/Components/Filter/Filter.svelte';
+  import FilterButton from '$lib/Components/Filter/FilterButton.svelte';
   // export let movies;
-  let clicked = false
-  let genre
-  let rating
-  let searchTerm
-  let start = 0
-  let end = 16
-  let valuesYear = []
+  let clicked = false;
+  let genre;
+  let rating;
+  let searchTerm;
+  let start = 0;
+  let end = 16;
+  let valuesYear = [];
 
-  let timer
+  let timer;
   const debounce = (e) => {
-    let textInput = e.detail
-    clearTimeout(timer)
+    let textInput = e.detail;
+    clearTimeout(timer);
     timer = setTimeout(() => {
       $filteredData = $bechdelData
         .filter((data) => {
           if (data.title !== undefined) {
-            return data.title.toLowerCase().includes(textInput.toLowerCase())
+            return data.title.toLowerCase().includes(textInput.toLowerCase());
           }
         })
         .sort((a, b) => {
-          return b.year - a.year
-        })
-    }, 300)
-  }
+          return b.year - a.year;
+        });
+    }, 300);
+  };
 
-  $filteredData = $bechdelData
+  $filteredData = $bechdelData;
 
   // filter our movies every time the DOM updates
   $: {
@@ -45,43 +45,43 @@
       $filteredData = $bechdelData
         .filter((movie) => movie.backdrop_path && movie.imdbid)
         .sort((a, b) => {
-          return b.year - a.year
-        })
+          return b.year - a.year;
+        });
     } else {
       if (rating) {
         // filter movies based on bechdel rating
         $filteredData = $bechdelData.filter((movie) => {
           return $filteredBechdelData.some((data) => {
-            return movie.imdbid && movie.imdbid.slice(2) == data.imdbid
-          })
-        })
+            return movie.imdbid && movie.imdbid.slice(2) == data.imdbid;
+          });
+        });
       }
       if (genre) {
         // filter genre movies
         $filteredData = $bechdelData.filter((movie) => {
-          let genrePresent = false
+          let genrePresent = false;
           if (movie.genres) {
             movie.genres.forEach((movieGenre) => {
               if (genre == movieGenre.name) {
-                genrePresent = true
+                genrePresent = true;
               } else {
-                genrePresent = false
+                genrePresent = false;
               }
-            })
-            return genrePresent
+            });
+            return genrePresent;
           }
-        })
+        });
       }
       if ($yearClicked) {
         // filter movies based on year
-        let minYear = valuesYear[0]
-        let maxYear = valuesYear[1]
+        let minYear = valuesYear[0];
+        let maxYear = valuesYear[1];
         $filteredData = $bechdelData.filter((movie) => {
           if (movie.year) {
-            let movieYear = movie.year
-            return minYear <= movieYear && maxYear >= movieYear
+            let movieYear = movie.year;
+            return minYear <= movieYear && maxYear >= movieYear;
           }
-        })
+        });
       }
     }
   }
@@ -93,9 +93,9 @@
     // 	genre = null;
     // 	rating = null;
     // 	$filteredData = $bechdelData.filter((movie) => movie.backdrop_path);
-  }
+  };
 
-  $: displayMovies = $filteredData.slice(start, end)
+  $: displayMovies = $filteredData.slice(start, end);
 </script>
 
 <div class="container">

@@ -7,39 +7,39 @@
     genreClicked,
     yearClicked,
     filteredBechdelData,
-  } from '$lib/stores.js'
-  import MovieCard from '$lib/Components/MovieCard.svelte'
-  import Search from '$lib/Components/Search.svelte'
-  import Filter from '$lib/Components/Filter/Filter.svelte'
-  import FilterButton from '$lib/Components/Filter/FilterButton.svelte'
-  import Pagination from '$lib/Components/Pagination.svelte'
-  export let movies
-  let clicked = false
-  let genre
-  let rating
-  let searchTerm
-  let start = 0
-  let end = 0
-  let valuesYear = []
+  } from '$lib/stores.js';
+  import MovieCard from '$lib/Components/MovieCard.svelte';
+  import Search from '$lib/Components/Search.svelte';
+  import Filter from '$lib/Components/Filter/Filter.svelte';
+  import FilterButton from '$lib/Components/Filter/FilterButton.svelte';
+  import Pagination from '$lib/Components/Pagination.svelte';
+  export let movies;
+  let clicked = false;
+  let genre;
+  let rating;
+  let searchTerm;
+  let start = 0;
+  let end = 0;
+  let valuesYear = [];
   // console.log($movieData);
   // console.log(movies);
 
-  let timer
+  let timer;
   const debounce = (e) => {
-    let textInput = e.detail
-    clearTimeout(timer)
+    let textInput = e.detail;
+    clearTimeout(timer);
     timer = setTimeout(() => {
       $filteredData = $movieData
         .filter((data) => {
           if (data.title !== undefined) {
-            return data.title.toLowerCase().includes(textInput.toLowerCase())
+            return data.title.toLowerCase().includes(textInput.toLowerCase());
           }
         })
         .sort((a, b) => {
-          return parseInt(b.release_date.slice(0, 4)) - parseInt(a.release_date.slice(0, 4))
-        })
-    }, 300)
-  }
+          return parseInt(b.release_date.slice(0, 4)) - parseInt(a.release_date.slice(0, 4));
+        });
+    }, 300);
+  };
 
   // filter our movies every time the DOM updates
   $: {
@@ -47,57 +47,57 @@
       $filteredData = $movieData
         .filter((movie) => movie.backdrop_path && movie.imdb_id)
         .sort((a, b) => {
-          return parseInt(b.release_date.slice(0, 4)) - parseInt(a.release_date.slice(0, 4))
-        })
+          return parseInt(b.release_date.slice(0, 4)) - parseInt(a.release_date.slice(0, 4));
+        });
     } else {
       if (rating) {
         // filter movies based on bechdel rating
         $filteredData = $movieData.filter((movie) => {
           return $filteredBechdelData.some((data) => {
-            return movie.imdb_id && movie.imdb_id.slice(2) == data.imdbid
-          })
-        })
+            return movie.imdb_id && movie.imdb_id.slice(2) == data.imdbid;
+          });
+        });
       }
       if (genre) {
         // filter genre movies
         $filteredData = $movieData.filter((movie) => {
-          let genrePresent = false
+          let genrePresent = false;
           if (movie.genres) {
             movie.genres.forEach((movieGenre) => {
               if (genre == movieGenre.name) {
-                genrePresent = true
+                genrePresent = true;
               } else {
-                genrePresent = false
+                genrePresent = false;
               }
-            })
-            return genrePresent
+            });
+            return genrePresent;
           }
-        })
+        });
       }
       if ($yearClicked) {
         // filter movies based on year
-        let minYear = valuesYear[0]
-        let maxYear = valuesYear[1]
+        let minYear = valuesYear[0];
+        let maxYear = valuesYear[1];
         $filteredData = $movieData.filter((movie) => {
           if (movie.release_date) {
-            let movieYear = parseInt(movie.release_date.slice(0, 4))
-            return minYear <= movieYear && maxYear >= movieYear
+            let movieYear = parseInt(movie.release_date.slice(0, 4));
+            return minYear <= movieYear && maxYear >= movieYear;
           }
-        })
+        });
       }
     }
   }
 
   const clearFilter = () => {
-    $yearClicked = false
-    valuesYear[0] = Math.min(...movies.map((data) => data.year))
-    valuesYear[1] = Math.max(...movies.map((data) => data.year))
-    genre = null
-    rating = null
-    $filteredData = $movieData.filter((movie) => movie.backdrop_path)
-  }
+    $yearClicked = false;
+    valuesYear[0] = Math.min(...movies.map((data) => data.year));
+    valuesYear[1] = Math.max(...movies.map((data) => data.year));
+    genre = null;
+    rating = null;
+    $filteredData = $movieData.filter((movie) => movie.backdrop_path);
+  };
 
-  $: displayMovies = $filteredData.slice(start, end)
+  $: displayMovies = $filteredData.slice(start, end);
 </script>
 
 <div class="container">

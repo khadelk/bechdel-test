@@ -1,6 +1,6 @@
 <script>
-  export let data
-  let movie = data.movie
+  export let data;
+  let movie = data.movie;
 </script>
 
 <div

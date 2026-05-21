@@ -1,75 +1,75 @@
 <script>
-  import { bechdelData, movieData } from '$lib/stores'
-  import { scaleBand, scaleLinear, max } from 'd3'
-  let storeGenres = {}
+  import { bechdelData, movieData } from '$lib/stores';
+  import { scaleBand, scaleLinear, max } from 'd3';
+  let storeGenres = {};
 
   $movieData.forEach((movie) => {
     if (movie.genres) {
       movie.genres.forEach((genre) => {
         if (storeGenres[genre.name] >= 1) {
-          storeGenres[genre.name] += 1
+          storeGenres[genre.name] += 1;
         } else {
-          storeGenres[genre.name] = 1
+          storeGenres[genre.name] = 1;
         }
-      })
+      });
     }
-  })
+  });
 
   // get all movie genres
-  const height = 500
-  const width = 500
+  const height = 500;
+  const width = 500;
   const margin = {
     top: 20,
     right: 20,
     bottom: 20,
     left: 20,
-  }
+  };
 
-  let data = []
+  let data = [];
   for (let i = 0; i < 4; i++) {
-    let count = 0
-    let newObj = {}
+    let count = 0;
+    let newObj = {};
     $bechdelData.forEach((movie) => {
       if (movie.rating == i) {
-        newObj['rating'] = i
-        newObj['count'] = count += 1
+        newObj['rating'] = i;
+        newObj['count'] = count += 1;
       }
-    })
-    data = [...data, newObj]
+    });
+    data = [...data, newObj];
   }
-  const maxCount = max(data.map((d) => d.count))
-  const maxTick = maxCount + 500 - (maxCount % 500)
+  const maxCount = max(data.map((d) => d.count));
+  const maxTick = maxCount + 500 - (maxCount % 500);
   const yScale = scaleLinear()
     .domain([0, maxTick])
-    .range([height - margin.bottom, margin.top])
+    .range([height - margin.bottom, margin.top]);
 
   const xScale = scaleBand()
     .domain(data.map((d) => d.rating))
     .range([margin.left, width - margin.right])
-    .padding(0.5)
+    .padding(0.5);
 
-  const yTicks = [0]
-  let i = 0
+  const yTicks = [0];
+  let i = 0;
   while (i < maxTick) {
-    i += 500
-    yTicks.push(i)
+    i += 500;
+    yTicks.push(i);
   }
 
-  let tooltipPositionX = 0
-  let tooltipPositionY = 0
+  let tooltipPositionX = 0;
+  let tooltipPositionY = 0;
 
   // TODO: add tooltip!
   const handleMouseOver = (event, dRating) => {
-    const tooltipDiv = document.getElementById(`rating-${dRating}`)
-    tooltipDiv.style.left = event.clientX + 'px'
-    tooltipDiv.style.top = event.clientY + 100 + 'px'
-    tooltipDiv.style.opacity = '100'
-  }
+    const tooltipDiv = document.getElementById(`rating-${dRating}`);
+    tooltipDiv.style.left = event.clientX + 'px';
+    tooltipDiv.style.top = event.clientY + 100 + 'px';
+    tooltipDiv.style.opacity = '100';
+  };
   const handleMouseLeave = (event, dRating) => {
-    const tooltipDiv = document.getElementById(`rating-${dRating}`)
-    tooltipDiv.style.opacity = '0'
-  }
-  const handleFocus = () => {}
+    const tooltipDiv = document.getElementById(`rating-${dRating}`);
+    tooltipDiv.style.opacity = '0';
+  };
+  const handleFocus = () => {};
 </script>
 
 <h2>Number of movies by genre</h2>

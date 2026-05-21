@@ -1,22 +1,22 @@
 <script>
-  import { slide } from 'svelte/transition'
+  import { slide } from 'svelte/transition';
   import {
     bechdelData,
     filteredBechdelData,
     filteredData,
     bechdelClicked,
     yearClicked,
-  } from '$lib/stores.js'
-  const bechdelNums = [0, 1, 2, 3]
-  export let rating
+  } from '$lib/stores.js';
+  const bechdelNums = [0, 1, 2, 3];
+  export let rating;
 
   const filterByBechdel = (e, num) => {
-    $bechdelClicked = true
-    rating = num
+    $bechdelClicked = true;
+    rating = num;
     $filteredBechdelData = $bechdelData.filter((data) => {
-      return data.rating == rating
-    })
-  }
+      return data.rating == rating;
+    });
+  };
 </script>
 
 <div class="bechdel">

@@ -1,47 +1,47 @@
 <script>
-  import { filteredData, movieData, bechdelClicked, genreClicked, yearClicked } from '$lib/stores'
-  export let start
-  export let end
-  let numItemsInData
-  let page = 1
+  import { filteredData, movieData, bechdelClicked, genreClicked, yearClicked } from '$lib/stores';
+  export let start;
+  export let end;
+  let numItemsInData;
+  let page = 1;
 
-  let numPagesArr
-  $: numItemsInData = $filteredData.length
-  $: numItemsOnEachPage = 16
-  $: numPages = Math.ceil(numItemsInData / numItemsOnEachPage) - 1
+  let numPagesArr;
+  $: numItemsInData = $filteredData.length;
+  $: numItemsOnEachPage = 16;
+  $: numPages = Math.ceil(numItemsInData / numItemsOnEachPage) - 1;
   $: {
     if (numPages > 0) {
-      numPagesArr = Array.from(Array(numPages).keys()).map((x) => ++x)
+      numPagesArr = Array.from(Array(numPages).keys()).map((x) => ++x);
     }
   }
-  $: start = page > 1 ? page * numItemsOnEachPage : 0
-  $: end = start + numItemsOnEachPage
-  $: clicked = page
+  $: start = page > 1 ? page * numItemsOnEachPage : 0;
+  $: end = start + numItemsOnEachPage;
+  $: clicked = page;
 
   const paginate = (e) => {
-    page = parseInt(e.target.innerText)
-  }
+    page = parseInt(e.target.innerText);
+  };
 
-  let numListItemsDisplayed = 3
-  let listStart
-  let listEnd
-  let displayPageArr
+  let numListItemsDisplayed = 3;
+  let listStart;
+  let listEnd;
+  let displayPageArr;
   $: {
     if (page < numListItemsDisplayed) {
-      listStart = 0
-      listEnd = numListItemsDisplayed
+      listStart = 0;
+      listEnd = numListItemsDisplayed;
     } else if (page >= numListItemsDisplayed) {
-      let index = numPagesArr.indexOf(page)
-      listStart = index - 1
-      listEnd = index + 2
+      let index = numPagesArr.indexOf(page);
+      listStart = index - 1;
+      listEnd = index + 2;
     } else {
       if (page + numListItemsDisplayed >= numPages) {
-        listStart = numPages - 1 - numListItemsDisplayed
-        listEnd = numPages - 1
+        listStart = numPages - 1 - numListItemsDisplayed;
+        listEnd = numPages - 1;
       }
     }
   }
-  $: displayPageArr = numPagesArr.slice(listStart, listEnd)
+  $: displayPageArr = numPagesArr.slice(listStart, listEnd);
 </script>
 
 <nav>
@@ -49,7 +49,7 @@
     {#if page > 2}
       <li
         on:click={() => {
-          page = 1
+          page = 1;
         }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
@@ -64,7 +64,7 @@
       </li>
       <li
         on:click={() => {
-          page -= 1
+          page -= 1;
         }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
@@ -78,7 +78,7 @@
       <li
         class={clicked == page ? 'clicked' : ''}
         on:click={(e) => {
-          paginate(e)
+          paginate(e);
         }}
       >
         {page}
@@ -87,7 +87,7 @@
     {#if page < numPages - 3}
       <li
         on:click={() => {
-          page += 1
+          page += 1;
         }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
@@ -98,7 +98,7 @@
       </li>
       <li
         on:click={() => {
-          page = numPages
+          page = numPages;
         }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"

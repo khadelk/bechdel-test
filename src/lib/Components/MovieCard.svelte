@@ -1,5 +1,5 @@
 <script>
-  export let movie
+  export let movie;
 </script>
 
 {#if movie.poster_path != null}

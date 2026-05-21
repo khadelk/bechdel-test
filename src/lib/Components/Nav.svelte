@@ -1,5 +1,5 @@
 <script>
-  let clicked = 'Movies'
+  let clicked = 'Movies';
 </script>
 
 <nav>

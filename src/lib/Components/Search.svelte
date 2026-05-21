@@ -1,39 +1,39 @@
 <script>
-  import { filteredData } from '$lib/stores.js'
-  import { createEventDispatcher } from 'svelte'
-  const dispatch = createEventDispatcher()
-  export let searchTerm
+  import { filteredData } from '$lib/stores.js';
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+  export let searchTerm;
 
   function sendInput(event) {
-    dispatch('sendInput', event.target.value)
+    dispatch('sendInput', event.target.value);
   }
 
   function clickOutside(element, callbackFunction) {
     function onClick(event) {
       if (!element.contains(event.target)) {
-        callbackFunction()
+        callbackFunction();
       }
     }
 
-    document.body.addEventListener('click', onClick)
+    document.body.addEventListener('click', onClick);
 
     return {
       update(newCallbackFunction) {
-        callbackFunction = newCallbackFunction
+        callbackFunction = newCallbackFunction;
       },
       destroy() {
-        document.body.removeEventListener('click', onClick)
+        document.body.removeEventListener('click', onClick);
       },
-    }
+    };
   }
-  let showSearch = true
-  $: $filteredData
+  let showSearch = true;
+  $: $filteredData;
 </script>
 
 <div
   on:click={(event) => {
-    showSearch = true
-    event.stopPropagation()
+    showSearch = true;
+    event.stopPropagation();
   }}
 >
   <input
@@ -50,7 +50,7 @@
         <div
           class="modal"
           use:clickOutside={() => {
-            showSearch = false
+            showSearch = false;
           }}
         >
           {#each $filteredData.slice(0, 16) as movie}
